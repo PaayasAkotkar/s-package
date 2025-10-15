@@ -1,6 +1,13 @@
 // Package grid main motivation is to study chess
 package grid
 
+import (
+	"fmt"
+	"slices"
+	"sort"
+	"strings"
+)
+
 type TwoDGrid[T any] struct {
 	row, col int
 	grid     [][]T
@@ -159,4 +166,122 @@ func DMatMul(a, b [][]int) [][]int {
 		}
 	}
 	return res
+}
+
+// Run a temp file for running in the main func
+func Run() {
+	board := TwoDGrid[string]{}
+	row, col := 4, 4
+	board.Construct(row, col, ".")
+
+	cols := make(map[int]bool)
+	d1 := make(map[int]bool)
+	d2 := make(map[int]bool)
+	var s [][]string
+	CalcNQueen(board, 0, "Q", ".", cols, d1, d2, &s)
+	fmt.Println(s, board.Size())
+	// lowerBound := sort.Search(len(x), func(i int) bool {
+	// 	return x[i] >= 50
+	// })
+	// upperBound := sort.Search(len(x), func(i int) bool {
+	// 	return x[i] > 50
+	// })
+	data := []string{"a", "b"}
+
+	fmt.Println(data)
+}
+
+// Less ideal help for sorting to less
+// i basically copied the cpp source code next_prev
+func Less(data sort.Interface, i, j int) bool {
+	return data.Less(i, j)
+}
+
+// NextPerm tried implmenting the next prew but its failed we'll do it later
+func NextPerm(data []int) bool {
+	_Reverse(sort.IntSlice(data), 1, 2)
+	slices.Backward(data)
+	x := data
+	slices.Sort(data)
+	y := data
+	_s := IsSortedUntil(data)
+	if !slices.Equal(x, y) {
+
+		for r := range _s {
+			x[r], x[r] = x[r], x[r]
+		}
+	}
+	return !slices.Equal(x, y)
+}
+
+// IsSortedUntil name says all
+func IsSortedUntil(data []int) int {
+	for i := 1; i < len(data); i++ {
+		if data[i] < data[i-1] {
+			return i
+		}
+	}
+	return len(data)
+}
+
+// _Reverse this is bsacill the cpp next_prev codes the make_revverse_iterator shit
+func _Reverse(data sort.Interface, start, end int) {
+	for start < end {
+		data.Swap(start, end)
+		start++
+		end--
+	}
+}
+
+// CalcNQueen [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+// i have used the enumeration technique of backtracking
+func CalcNQueen(board TwoDGrid[string], row int, place, empty string,
+	cols, diag1, diag2 map[int]bool, sols *[][]string) bool {
+	if row == board.Size() {
+		s := make([]string, board.Size())
+		for r := 0; r < board.Size(); r++ {
+			s[r] = strings.Join(board.Range()[r], "")
+		}
+		*sols = append(*sols, s)
+
+	}
+
+	for col := 0; col < board.Size(); col++ {
+
+		d1 := row + col                      // front
+		d2 := row - col + (board.Size() - 1) // reverse
+		// if there is no pos to place the queen
+		// skip
+		if cols[col] || diag1[d1] || diag2[d2] {
+			continue
+		}
+
+		// place the queen
+		board.Range()[row][col] = place
+		cols[col] = true
+		diag1[d1] = true
+		diag2[d2] = true
+
+		if CalcNQueen(board, row+1, empty, place, cols, diag1, diag2, sols) {
+			return true
+		}
+
+		// backtrack
+		board.Range()[row][col] = empty
+		cols[col] = false
+		diag1[d1] = false
+		diag2[d2] = false
+
+	}
+	return false
+}
+
+// Reverse revers the the number in the array
+// i mean this is horrible
+func Reverse(_range int) []int {
+	var d []int
+	for r := _range; r > 0; r++ {
+		d = append(d, r)
+	}
+	return d
 }
