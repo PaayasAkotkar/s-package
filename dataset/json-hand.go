@@ -75,6 +75,62 @@ func ToJSONformat(path string) {
 	}
 }
 
+// Example demonstrates the use of open and format to array string
+func Example() {
+	pattern := regexp.MustCompile(`\b(?:GK|DF|MD|FW|\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}.*$)\b|[0-9]`)
+	file := "test.txt"
+	Open(file, *pattern)
+	FormatToArray(file)
+	// output:
+	// "Iker CASILLAS",
+	// "Cristobal CURRO TORRES",
+	// "JUAN FRANcisco Garcia",
+	// "Ivan HELGUERA",
+	// "Carles PUYOL",
+	// "Fernando HIERRO",
+	// "RAUL Gonzalez Blanco",
+	// "Ruben BARAJA",
+	// "Fernando MORIENTES",
+	// "Diego TRISTAN",
+	// "Francisco DE PEDRO",
+	// "Alberto LUQUE",
+	// "RICARDO Lopez Felipe",
+	// "David ALBELDA Aliques",
+	// "Enrique ROMERO",
+	// "Gaizka MENDIETA            Mar    Lazio (ITA)",
+	// "Juan Carlos VALERON",
+	// "SERGIO Gonzalez Soriano",
+	// "XAVI Hernandez",
+	// "Miguel Angel NADAL",
+	// "LUIS ENRIQUE",
+	// "JOAQUIN Sanchez",
+	// "Pedro CONTRERAS",
+}
+
+// Open opens the file and removes all the requested data
+func Open(f string, pattern regexp.Regexp) {
+	fs, err := os.OpenFile(f, os.O_RDONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer fs.Close()
+	lines := []string{}
+	scanner := bufio.NewScanner(fs)
+	for scanner.Scan() {
+		line := scanner.Text()
+		line = string(pattern.ReplaceAll([]byte(line), []byte("")))
+		if line == "" {
+			continue
+		}
+		lines = append(lines, line)
+	}
+	sentences := strings.Join(lines, "\n")
+
+	if err := os.WriteFile(f, []byte(sentences), 0644); err != nil {
+		panic(err)
+	}
+}
+
 // FormatToArray converts the data to array
 // the format must be:
 // input:
@@ -87,15 +143,19 @@ func ToJSONformat(path string) {
 // "i have 5 wives"
 func FormatToArray(filepath string) {
 	fs, err := os.OpenFile(filepath, os.O_RDONLY, 0644)
+
 	if err != nil {
 		panic(err)
 	}
+
 	defer fs.Close()
 	lines := []string{}
 	scanner := bufio.NewScanner(fs)
 	for scanner.Scan() {
 		line := scanner.Text()
+		line = strings.TrimSpace(line)
 		mod := fmt.Sprintf("\"%s\",", line) // does "line"
+
 		lines = append(lines, mod)
 	}
 	sentences := strings.Join(lines, "\n")
