@@ -1,0 +1,23 @@
+  1 GK Iker CASILLAS             20 May 1981   Real Madrid
+     2 DF Cristobal CURRO TORRES    27 Dec 1976   Valencia
+     3 DF JUAN FRANcisco Garcia     15 Jul 1976   Celta Vigo
+     4 MD Ivan HELGUERA             18 Mar 1975   Real Madrid
+     5 DF Carles PUYOL              13 Apr 1978   Barcelona
+     6 DF Fernando HIERRO           23 Mar 1968   Real Madrid          1990,94,98
+     7 FW RAUL Gonzalez Blanco      27 Jun 1977   Real Madrid          1998
+     8 MD Ruben BARAJA              11 Jul 1975   Valencia
+     9 FW Fernando MORIENTES        05 Apr 1976   Real Madrid          1998
+    10 FW Diego TRISTAN             05 Jan 1976   Deportivo La Coruña
+    11 MD Francisco DE PEDRO        04 Aug 1973   Real Sociedad
+    12 FW Alberto LUQUE             11 Mar 1978   Real Mallorca
+    13 GK RICARDO Lopez Felipe      30 Dec 1971   Real Valladolid
+    14 MD David ALBELDA Aliques     01 Sep 1977   Valencia
+    15 DF Enrique ROMERO            23 Jun 1971   Deportivo La Coruña
+    16 MD Gaizka MENDIETA           27 Mar 1974   Lazio (ITA)
+    17 MD Juan Carlos VALERON       17 Jun 1975   Deportivo La Coruña
+    18 MD SERGIO Gonzalez Soriano   10 Nov 1976   Deportivo La Coruña
+    19 DF XAVI Hernandez            25 Jan 1980   Barcelona
+    20 DF Miguel Angel NADAL        28 Jul 1966   Real Mallorca        1994,98
+    21 FW LUIS ENRIQUE              08 May 1970   Barcelona            1994,98
+    22 MD JOAQUIN Sanchez           21 Jul 1981   Real Betis
+    23 GK Pedro CONTRERAS           07 Jan 1972   Malaga
