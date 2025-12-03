@@ -1,3 +1,4 @@
+// Package dataset algorithm related strings
 package dataset
 
 import (
