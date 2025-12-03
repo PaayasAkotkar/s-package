@@ -78,7 +78,7 @@ func ToJSONformat(path string) {
 // Example demonstrates the use of open and format to array string
 func Example() {
 	pattern := regexp.MustCompile(`\b(?:GK|DF|MD|FW|\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}.*$)\b|[0-9]`)
-	file := "test.txt"
+	file := "open.txt"
 	Open(file, *pattern)
 	FormatToArray(file)
 	// output:
@@ -162,4 +162,61 @@ func FormatToArray(filepath string) {
 	if err := os.WriteFile(filepath, []byte(sentences), 0644); err != nil {
 		panic(err)
 	}
+}
+
+// OpenAndDoAfter strict ordering for subsmatch
+func OpenAndDoAfter(f string, pattern regexp.Regexp) {
+
+	fs, err := os.OpenFile(f, os.O_RDONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer fs.Close()
+	lines := []string{}
+	scanner := bufio.NewScanner(fs)
+	for scanner.Scan() {
+		line := scanner.Text()
+		matches := pattern.FindStringSubmatch(line)
+		if len(matches) > 1 {
+			lines = append(lines, strings.ToLower(matches[1]))
+		}
+	}
+	sentences := strings.Join(lines, "\n")
+
+	if err := os.WriteFile(f, []byte(sentences), 0644); err != nil {
+		panic(err)
+	}
+}
+func ExampleOpenAfter() {
+	fs := "openafter.txt"
+	re := regexp.MustCompile(`^\s*\d+\s+(?:GK|DF|MD|FW)\s+([A-Za-zÀ-ÖØ-öø-ÿ \-']+?)\s+\d{1,2}\s+[A-Za-z]{3}\s+\d{4}`)
+	OpenAndDoAfter(fs, *re)
+	FormatToArray(fs)
+
+	// output:
+	//
+	//	"moneeb josephs",
+	//
+	// "siboniso gaxa",
+	// "tsepo masilela",
+	// "aaron mokoena",
+	// "anele ngcongca",
+	// "macbeth sibaya",
+	// "lance davids",
+	// "siphiwe tshabalala",
+	// "katlego mphela",
+	// "steven pienaar",
+	// "teko modise",
+	// "reneilwe letsholonyane",
+	// "kagisho dikgacoi",
+	// "matthew booth",
+	// "lucas thwala",
+	// "itumeleng khune",
+	// "bernard parker",
+	// "siyabonga nomvethe",
+	// "surprise moriri",
+	// "bongani khumalo",
+	// "siyabonga sangweni",
+	// "shu-aib walters",
+	// "thanduyise khuboni",
 }
