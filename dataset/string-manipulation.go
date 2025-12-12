@@ -1,3 +1,4 @@
+// Package dataset algorithm related strings
 package dataset
 
 import (
@@ -20,16 +21,16 @@ func StringShift(valueToShift string, from string, atIndex int) string {
 func Shift[T any](valueToShift T, from []T, atIndex int) []T {
 	temp := []T{}
 
-	//////normal swapping process////
+	//normal swapping process
 	temp = append(temp, from...)
 
-	//// prepends the value at given index
+	//prepends the value at given index
 	from = append(from[:atIndex], valueToShift)
 
-	//// appends back the value at given index after the appended value
+	//appends back the value at given index after the appended value
 	from = append(from, temp[len(from)-1:]...)
 
-	//////end of swapping procss////
+	//end of swapping procss
 	return from
 }
 

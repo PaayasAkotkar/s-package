@@ -1,0 +1,23 @@
+  1 GK Moneeb Josephs            19 May 1980   Orlando Pirates
+         2 DF Siboniso Gaxa             06 Apr 1984   Mamelodi Sundowns
+         3 DF Tsepo Masilela            05 May 1985   Maccabi Haifa (ISR)
+         4 DF Aaron Mokoena             25 Nov 1980   Portsmouth (ENG)     2002
+         5 DF Anele Ngcongca            20 Oct 1987   Racing Genk (BEL)
+         6 MD MacBeth Sibaya            25 Nov 1977   Rubin Kazan (RUS)    2002
+         7 MD Lance Davids              11 Apr 1985   Ajax Cape Town
+         8 MD Siphiwe Tshabalala        25 Sep 1984   Kaizer Chiefs
+         9 FW Katlego Mphela            29 Nov 1984   Mamelodi Sundowns
+        10 MD Steven Pienaar            17 Mar 1982   Everton (ENG)        2002
+        11 MD Teko Modise               22 Dec 1982   Orlando Pirates
+        12 MD Reneilwe Letsholonyane    09 Jun 1982   Kaizer Chiefs
+        13 MD Kagisho Dikgacoi          24 Nov 1984   Fulham (ENG)
+        14 DF Matthew Booth             14 Mar 1977   Mamelodi Sundowns
+        15 DF Lucas Thwala              19 Oct 1981   Orlando Pirates
+        16 GK Itumeleng Khune           20 Jun 1987   Kaizer Chiefs
+        17 FW Bernard Parker            16 Mar 1986   FC Twente (NED)
+        18 FW Siyabonga Nomvethe        02 Dec 1977   Moroka Swallows      2002
+        19 MD Surprise Moriri           20 Mar 1980   Mamelodi Sundowns
+        20 DF Bongani Khumalo           06 Jan 1987   Supersport United
+        21 DF Siyabonga Sangweni        29 Sep 1981   Golden Arrows
+        22 GK Shu-Aib Walters           26 Dec 1981   Maritzburg United
+        23 MD Thanduyise Khuboni        23 May 1986   Golden Arrows

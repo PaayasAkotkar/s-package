@@ -1,9 +1,8 @@
+// Package dataset algorithm related json
 package dataset
 
 import (
-	"bufio"
 	"encoding/json"
-	"fmt"
 	"io"
 	"os"
 	"regexp"
@@ -71,35 +70,6 @@ func ToJSONformat(path string) {
 	// write the file
 	err := os.WriteFile(path, []byte(j), 0644)
 	if err != nil {
-		panic(err)
-	}
-}
-
-// FormatToArray converts the data to array
-// the format must be:
-// input:
-// hey i am king
-// i have 10 kids
-// i have 5 wives
-// output:
-// "hey i am key"
-// "i have 10 kids"
-// "i have 5 wives"
-func FormatToArray(filepath string) {
-	fs, err := os.OpenFile(filepath, os.O_RDONLY, 0644)
-	if err != nil {
-		panic(err)
-	}
-	defer fs.Close()
-	lines := []string{}
-	scanner := bufio.NewScanner(fs)
-	for scanner.Scan() {
-		line := scanner.Text()
-		mod := fmt.Sprintf("\"%s\",", line) // does "line"
-		lines = append(lines, mod)
-	}
-	sentences := strings.Join(lines, "\n")
-	if err := os.WriteFile(filepath, []byte(sentences), 0644); err != nil {
 		panic(err)
 	}
 }
