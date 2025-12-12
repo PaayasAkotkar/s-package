@@ -24,6 +24,9 @@ export namespace CSScalculator {
 
 // this library is created to work with figma
 // you dont have to do any further ccalualtion just put the x*y in the formula
+// x=widht, y=height
+// so when you hover over the object in figma it shows x*y that is what you have to put in the formula
+// currently whole is coded from the perspective of pixels 
 export namespace CSSMaths {
 
     // IncreaseBy returns the value for further investigation based on percentage
